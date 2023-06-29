@@ -46,8 +46,8 @@ namespace Tetris
 
         public void Move(int rows, int cols)
         {
-            offset.Row = rows;
-            offset.Col = cols;
+            offset.Row += rows;
+            offset.Col += cols;
         }
 
         public void Reset()

@@ -17,6 +17,15 @@ namespace Tetris
             {
                 currentBlock = value;
                 currentBlock.Reset();
+
+                for ( int i = 0; i < 2; i++)
+                {
+                    currentBlock.Move(1, 0);
+                    if (!BlockFits())
+                    {
+                        currentBlock.Move(-1, 0);
+                    }
+                }
             }
         }
 
@@ -45,54 +54,55 @@ namespace Tetris
 
         public void RotateBlockCW()
         {
-            currentBlock.RotateCW();
+            CurrentBlock.RotateCW();
 
             if (!BlockFits())
             {
-                currentBlock.RotateCCW();
+                CurrentBlock.RotateCCW();
             }
         }
 
-        public void RotateCCW()
+
+        public void RotateBlockCCW()
         {
-            currentBlock.RotateCCW();
+            CurrentBlock.RotateCCW();
 
             if(!BlockFits())
             {
-                currentBlock.RotateCW();
+                CurrentBlock.RotateCW();
             }
         }
 
         public void MoveBlockLeft()
         {
-            currentBlock.Move(0, -1);
+            CurrentBlock.Move(0, -1);
 
             if (!BlockFits())
             {
-                currentBlock.Move(0, 1);
+                CurrentBlock.Move(0, 1);
             }
         }
 
         public void MoveBlockright()
         {
-            currentBlock.Move(0, 1);
+            CurrentBlock.Move(0, 1);
 
             if(!BlockFits())
             {
-                currentBlock.Move(0, -1);
+                CurrentBlock.Move(0, -1);
             }
         }
 
         private bool IsGameOver()
         {
-            return !(GameGrid.IsEmpty(0)  && !GameGrid.IsEmpty(1));
+            return !(GameGrid.IsRowEmpty(0)  && !GameGrid.IsRowEmpty(1));
         }
 
         private void Placeblock()
         {
             foreach(Position p in CurrentBlock.TilePositions())
             {
-                GameGrid[p.Row, p.Col] = currentBlock.Id;
+                GameGrid[p.Row, p.Col] = CurrentBlock.Id;
             }
 
             GameGrid.ClearFullRows();

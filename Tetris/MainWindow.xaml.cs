@@ -86,6 +86,7 @@ namespace Tetris
                 for(int c =  0 ; c < grid.Cols; c++)
                 {
                     int id = grid[r, c];
+                    imageControls[r, c].Opacity = 1;
                     imageControls[r,c].Source = tileImages[id];
                 }
             }
@@ -127,7 +128,7 @@ namespace Tetris
                     gameState.RotateBlockCW();
                     break;
                 case Key.Z:
-                    gameState.RotateBlockCW();
+                    gameState.RotateBlockCCW();
                     break;
                 default:
                     return;
@@ -137,7 +138,7 @@ namespace Tetris
 
         private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Draw(gameState);
         }
 
         private void PlayAgain_Click(object sender, RoutedEventArgs e)

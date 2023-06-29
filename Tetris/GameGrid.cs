@@ -28,7 +28,7 @@ namespace Tetris
 
         public bool IsInside(int r, int c)
         {
-            return r >= 0 && r < Rows && c >= Cols && c < Cols;
+            return r >= 0 && r < Rows && c >= 0 && c < Cols;
         }
 
         public bool IsEmpty(int r, int c)
@@ -48,7 +48,7 @@ namespace Tetris
             return true;
         }
 
-        public bool IsEmpty(int r)
+        public bool IsRowEmpty(int r)
         {
             for (int c = 0; r < Cols; c++)
             {
@@ -81,14 +81,14 @@ namespace Tetris
         {
             int cleared = 0;
 
-            for (int r = Rows -1; r >= 0; r--)
+            for (int r = Rows-1; r >= 0; r--)
             {
                 if (IsRowFull(r))
                 {
                     ClearRow(r);
                     cleared++;
                 }
-                else if( cleared > 0)
+                else if(cleared > 0)
                 {
                     MoveRowDown(r, cleared);
                 }
