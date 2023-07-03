@@ -50,7 +50,7 @@ namespace Tetris
 
         public bool IsRowEmpty(int r)
         {
-            for (int c = 0; r < Cols; c++)
+            for (int c = 0; c < Cols; c++)
             {
                 if (grid[r,c] != 0)
                 {
